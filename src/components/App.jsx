@@ -45,6 +45,22 @@ export class App extends Component {
     );
   };
 
+  componentDidMount() {
+    const stringContacts = localStorage.getItem('contacts');
+    const parseContacts = JSON.parse(stringContacts) ?? this.state.contacts;
+    this.setState({
+      contacts: parseContacts,
+    });
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      console.log('contacts was updated');
+      const stringifiedContacts = JSON.stringify(this.state.contacts);
+      localStorage.setItem('contacts', stringifiedContacts);
+    }
+  }
+
   render() {
     const findContacts = this.getFindContact();
     return (

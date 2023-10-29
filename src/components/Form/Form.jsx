@@ -50,6 +50,8 @@ export class Form extends Component {
               name="number"
               value={this.state.number}
               onChange={this.handleInputChange}
+              pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}"
+              placeholder="XXX-XX-XX"
               required
             />
           </label>
